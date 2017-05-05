@@ -20,16 +20,16 @@
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNext">
-        <activity android:name=".MainActivity"
-       >
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MerchantActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".MerchantActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainPanel"
             android:theme="@style/AppThemeNext" />
@@ -100,7 +100,7 @@
         <activity android:name=".VoucherActivity" />
         <activity android:name=".KirimVoucherActivity" />
         <activity android:name=".HistoryVoucherActivity" />
-
+        <activity android:name=".TopupCCActivity"></activity>
     </application>
 
 </manifest>

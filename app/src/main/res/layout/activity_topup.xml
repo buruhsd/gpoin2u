@@ -96,7 +96,7 @@
             android:layout_below="@+id/txtketBayar"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:gravity="right">
+            android:gravity="center">
             <Button
             android:text="Submit"
             android:layout_width="wrap_content"
@@ -107,6 +107,17 @@
             android:layout_alignParentStart="true"
             android:layout_marginTop="5dp"
             android:paddingBottom="5dp" />
+
+            <Button
+                android:id="@+id/btnSubmitCC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/passtrx"
+                android:layout_marginTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="via CC" />
 
             <Button
                 android:text="Upload"
