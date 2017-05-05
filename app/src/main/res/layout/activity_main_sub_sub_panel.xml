@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main_sub_sub_panel"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/aa"
+    tools:context="tuberpraka.gpoin.MainSubPanelActivity">
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/submenutitle"
+        android:textSize="20sp"
+        android:padding="16dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@id/submenutitle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recycleView2"
+        android:layout_marginTop="5dp" />
+
+</RelativeLayout>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main_sub_panel"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="tuberpraka.gpoin.MainSubPanel"
+ >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/ln2"
+
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+
+        <Button
+            android:text="Calculator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btncon"
+            android:background="@drawable/button_bunder"
+            android:textColor="@color/cardview_light_background"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:padding="10dp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:elevation="10dp"
+        android:id="@+id/lnn1"
+        android:layout_below="@+id/id_news"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/bayangan"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/img1"
+            android:background="@drawable/ps" />
+        <TextView
+            android:text="Username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:id="@+id/id_username"
+            android:textColor="@color/cardview_dark_background"
+            android:layout_marginLeft="9dp"
+            android:layout_marginStart="9dp"
+            android:textStyle="normal|bold"
+            android:layout_marginTop="5dp"
+            android:gravity="left"
+            android:textSize="14sp"
+            android:layout_toRightOf="@+id/img1"/>
+
+        <TextView
+            android:text="Nama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/img1"
+            android:layout_below="@+id/id_username"
+            android:id="@+id/nama"
+            android:textColor="@color/cardview_dark_background"
+            android:layout_marginLeft="9dp"
+            android:layout_marginStart="9dp"
+            android:textStyle="normal|bold"
+            android:layout_marginTop="5dp"
+            android:gravity="left"
+            android:textSize="14sp" />
+
+        <TextView
+            android:text="Poin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/menupoin"
+            android:textColor="@color/colorPrimaryRed"
+            android:textStyle="normal|bold"
+            android:gravity="right|center"
+            android:foregroundGravity="center"
+            android:textSize="14sp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/id_username" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/ln1"
+        android:weightSum="1"
+        android:layout_below="@+id/lnn1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <android.support.v7.widget.RecyclerView
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/recycleView2"
+            android:layout_weight="1.13"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:paddingRight="10dp"/>
+        <TextView
+            android:text="Kembali"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/sc"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/holo_red_dark"
+            android:textStyle="normal"
+            android:paddingRight="10dp"
+            android:paddingLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:gravity="right"
+            android:id="@+id/txtback"
+            android:elevation="17dp" />
+        <!--<TextView-->
+            <!--android:text="Powered By :\n PT. GLOBAL BISNIS ULTRANET"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_above="@+id/txtversi"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="@android:color/black"-->
+            <!--android:textStyle="normal"-->
+            <!--android:paddingRight="5dp"-->
+            <!--android:paddingLeft="5dp"-->
+            <!--android:gravity="center"-->
+            <!--android:layout_marginTop="30dp" />-->
+    </LinearLayout>
+
+</RelativeLayout>

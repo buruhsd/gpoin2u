@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main_panel"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="tuberpraka.gpoin.MainPanel"
+    android:weightSum="1">
+
+    <TextView
+        android:text="*"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/id_news"
+        android:textColor="@color/colorPrimaryDarkRed"
+        android:layout_marginLeft="9dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="9dp"
+        android:textStyle="normal|bold"
+        android:layout_marginTop="5dp" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:id="@+id/lnn1"
+    android:layout_below="@+id/id_news"
+    android:gravity="center">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imgin"
+        android:background="@mipmap/ic_gpoin" />
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:id="@+id/imgin1"
+        android:background="@mipmap/ic_gpoin"
+        android:layout_centerInParent="true" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+
+
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/bayangan"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/img1"
+            android:background="@drawable/ps" />
+        <TextView
+            android:text="Username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:id="@+id/id_username"
+            android:textColor="@color/cardview_dark_background"
+            android:layout_marginLeft="9dp"
+            android:layout_marginStart="9dp"
+            android:textStyle="normal|bold"
+            android:layout_marginTop="5dp"
+            android:gravity="left"
+            android:textSize="14sp"
+            android:layout_toRightOf="@+id/img1"/>
+
+        <TextView
+            android:text="Nama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/img1"
+            android:layout_below="@+id/id_username"
+            android:id="@+id/nama"
+            android:textColor="@color/cardview_dark_background"
+            android:layout_marginLeft="9dp"
+            android:layout_marginStart="9dp"
+            android:textStyle="normal|bold"
+            android:layout_marginTop="5dp"
+            android:gravity="left"
+            android:textSize="14sp" />
+
+        <TextView
+            android:text="Poin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nama"
+            android:id="@+id/menupoin"
+            android:layout_toRightOf="@+id/img1"
+            android:textColor="@color/colorPrimaryRed"
+            android:layout_marginLeft="9dp"
+            android:layout_marginStart="9dp"
+            android:textStyle="normal|bold"
+            android:layout_marginTop="5dp"
+            android:gravity="right|center"
+            android:foregroundGravity="center"
+            android:textSize="14sp"/>
+    </RelativeLayout>
+   </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/lnn1"
+        android:id="@+id/sc"
+        android:layout_weight="31.33">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycleView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/lnn1"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:paddingRight="10dp" />
+
+        <!--<TextView-->
+            <!--android:text="Powered By :\n PT. GLOBAL BISNIS ULTRANET"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_above="@+id/txtversi"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="@android:color/black"-->
+            <!--android:textStyle="normal"-->
+            <!--android:paddingRight="5dp"-->
+            <!--android:paddingLeft="5dp"-->
+            <!--android:gravity="center"-->
+            <!--android:layout_marginTop="30dp" />-->
+    </LinearLayout>
+    </ScrollView>
+
+
+
+</RelativeLayout>

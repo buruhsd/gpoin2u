@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <item android:id="@+id/editprofil"
+        android:title="Ubah Profil"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:textColor="@color/colorPrimaryRed"/>
+    <item android:id="@+id/editpass"
+        android:title="Ubah Trx Password"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:textColor="@color/colorPrimaryRed"/>
+    <item android:id="@+id/cs"
+        android:title="Customer Service"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:textColor="@color/colorPrimaryRed"/>
+    <item android:id="@+id/logout"
+        android:title="Logout"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:textColor="@color/colorPrimaryRed"/>
+
+</menu>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="bahasa">
+        <item>English</item>
+    </string-array>
+
+    <string-array name="bank">
+        <item>BNI</item>
+        <item>MANDIRI</item>
+        <item>BCA</item>
+        <item>CIMB</item>
+        <item>BRI</item>
+    </string-array>
+
+    <string-array name="BNI">
+        <item>ATM BNI</item>
+        <item>Transfer Manual BNI</item>
+    </string-array>
+
+    <string-array name="lainnya">
+        <item>ATM</item>
+        <item>Transfer Manual</item>
+    </string-array>
+
+    <string-array name="bulan">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+    </string-array>
+</resources>

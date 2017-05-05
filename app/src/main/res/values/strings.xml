@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">GPOIN2U</string>
+    <string name="fp"><u>Forgot Password ?</u></string>
+    <string name="cs"><u>Customer Service</u></string>
+    <string name="cp"><u>PAYMENT CONFIRMATION</u></string>
+
+    <drawable name="clr_normal">#ffffff</drawable>
+    <drawable name="clr_pressed">#777777</drawable>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
+

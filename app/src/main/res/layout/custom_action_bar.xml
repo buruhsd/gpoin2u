@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="left|center"
+    android:orientation="horizontal"
+    android:paddingLeft="10dp">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_height="50dp"
+        android:clickable="false"
+        android:focusable="false"
+        android:longClickable="false"
+        android:src="@drawable/logo_loyalty"
+        android:layout_width="120dp"
+        android:layout_gravity="left" />
+
+    <ImageView
+        android:id="@+id/actionBarLogo"
+        android:layout_height="50dp"
+        android:clickable="false"
+        android:focusable="false"
+        android:longClickable="false"
+        android:src="@drawable/gpoin2ulogo"
+        android:layout_width="120dp"
+        android:layout_gravity="left" />
+
+</LinearLayout>

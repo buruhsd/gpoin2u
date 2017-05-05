@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="tuberpraka.gpoin">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <application
+        android:allowBackup="true"
+        android:hardwareAccelerated="false"
+        android:icon="@mipmap/ic_gpoin"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppThemeNext">
+        <activity android:name=".MainActivity"
+       >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MerchantActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".MainPanel"
+            android:theme="@style/AppThemeNext" />
+        <activity
+            android:name=".MainSubPanel"
+            android:theme="@style/AppThemeNext" />
+
+        <service android:name=".RoosterConnectionService" />
+        <service android:name=".DataBase" />
+
+        <activity
+            android:name=".RegisterActivity"
+            android:theme="@style/AppThemeNext" />
+        <activity
+            android:name=".MainSubPanelActivity"
+            android:theme="@style/AppThemeNext" />
+        <activity
+            android:name=".PulsaActivity"
+            android:theme="@style/AppThemeNext" />
+        <activity
+            android:name=".BPJSActivity"
+            android:theme="@style/AppThemeNext" />
+        <activity
+            android:name=".TransferActivity"
+            android:theme="@style/AppThemeNext" />
+        <activity
+            android:name=".PPOBActivity"
+            android:theme="@style/AppThemeNext" />
+        <activity
+            android:name=".PDAMActivity"
+            android:theme="@style/AppThemeNext" />
+        <activity
+            android:name=".PlnActivity"
+            android:theme="@style/AppThemeNext" />
+        <activity
+            android:name=".VGActivity"
+            android:theme="@style/AppThemeNext" />
+        <activity
+            android:name=".ChatActivity"
+            android:theme="@style/AppThemeNext" />
+        <activity
+            android:name=".AktifActivity"
+            android:theme="@style/AppThemeNext" />
+        <activity
+            android:name=".ProfilActivity"
+            android:theme="@style/AppThemeNext" />
+        <activity
+            android:name=".SettingActivity"
+            android:theme="@style/AppThemeNext" />
+        <activity
+            android:name=".TopupActivity"
+            android:theme="@style/AppThemeNext" />
+        <activity
+            android:name=".HistoryPoinActivity"
+            android:theme="@style/AppThemeNext" />
+        <activity
+            android:name=".UploadGambarActivity"
+            android:theme="@style/AppThemeNext" />
+        <activity
+            android:name=".CustomerCareActivity"
+            android:theme="@style/AppThemeNext" />
+        <activity
+            android:name=".ComingSoonActivity"
+            android:theme="@style/AppThemeNext" />
+        <activity
+            android:name=".HistoryTabelActivity"
+            android:theme="@style/AppThemeNext" />
+        <activity android:name=".VoucherActivity" />
+        <activity android:name=".KirimVoucherActivity" />
+        <activity android:name=".HistoryVoucherActivity" />
+
+    </application>
+
+</manifest>
