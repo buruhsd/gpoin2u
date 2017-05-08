@@ -2,6 +2,7 @@ package tuberpraka.gpoin;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.IntegerRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -35,10 +37,13 @@ import tuberpraka.gpoin.Model.NicePay;
 
 public class TopupCCActivity extends AppCompatActivity {
 
+    public final static String MESSAGE_KEY = "tuberpraka.gpoin.meesage_key";
+
     public static final String iMid = "BMRITEST01";
     public static final String encodeKey = "33F49GnCMS1mFYlGXisbUDzVf2ATWCl9k3R++d5hDd3Frmuos/XLx8XhXpe+LDYAbpGKZYSwtlyyLOtS/8aD7A==";
     public static String url = "https://www.nicepay.co.id/nicepay/api/onePassToken.do";
     public static String charge = "http://192.168.1.89/nicepay/PHP_Nicepay_Direct/charge.php";
+    public final static String harga= "15000";
     EditText editText, editText2, editText3, editText4;
     Button button2;
     AlertDialog.Builder dialog;
@@ -49,6 +54,10 @@ public class TopupCCActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
+//        Log.d("DARI INTENT", amt);
         setContentView(R.layout.activity_topup_cc);
 
         editText = (EditText) findViewById(R.id.editText);
@@ -137,12 +146,21 @@ public class TopupCCActivity extends AppCompatActivity {
 
     public void string() {
 
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(MESSAGE_KEY);
+        Integer poin = Integer.parseInt(message);
+        Integer biaya = Integer.parseInt(harga);
+        Integer amt = poin*biaya;
+
+        Log.d("mencoba",String.valueOf(amt));
+
         String name = editText.getText().toString();
         String card = editText2.getText().toString();
         String cvv = editText3.getText().toString();
         String yymm = editText4.getText().toString();
         String referenceNo = "12345678";
-        String amt = "10000";
+
+        Log.d("AMT", String.valueOf(amt));
 
         String merchantToken =iMid+referenceNo+amt+encodeKey;
         MessageDigest digest=null;
@@ -251,8 +269,8 @@ public class TopupCCActivity extends AppCompatActivity {
 //        WebBackForwardList mWebBackForwardList = bayar.copyBackForwardList();
 //        String historyUrl = mWebBackForwardList.getItemAtIndex(mWebBackForwardList.getCurrentIndex()-1).getUrl();
 
-        bayar.loadUrl("https://www.nicepay.co.id/nicepay/api/secureVeRequest.do?country=360&callbackUrl=http://192.168.1.89/nicepay/PHP_Nicepay_Direct/3dsecure.php&onePassToken="+cardToken);
-//        bayar.loadUrl("facebook.com");
+//        bayar.loadUrl("https://www.nicepay.co.id/nicepay/api/secureVeRequest.do?country=360&callbackUrl=http://192.168.1.89/nicepay/PHP_Nicepay_Direct/3dsecure.php&onePassToken="+cardToken);
+        bayar.loadUrl("facebook.com");
 //        String geturl = bayar.getUrl();
 //        if (geturl == "http://192.168.1.89/nicepay/PHP_Nicepay_Direct/3dsecure.php?resultCd=0000&resultMsg=SUCCESS&referenceNo=12345678"){
 //            sendCharge();

@@ -57,10 +57,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static android.provider.AlarmClock.EXTRA_MESSAGE;
+
 public class TopupActivity extends AppCompatActivity {
 EditText txtsaldoTopup, txtan;
     LogConfig lg;
-    Button btnSubmitTopup, btnup;
+    Button btnSubmitTopup, btnup, btnSubmitCC;
     boolean tombol=false;
     Spinner konfirmbank;
     String saldo="", param="", id_imei="",atasnama="", databank="", password="", passtrx="",  harga="", kode_unik="";
@@ -89,6 +91,7 @@ EditText txtsaldoTopup, txtan;
 
 
     public static final String UPLOAD_KEY = "upload_image";
+    public final static String MESSAGE_KEY = "tuberpraka.gpoin.meesage_key";
 
     private int PICK_IMAGE_REQUEST = 100;
 
@@ -138,6 +141,19 @@ EditText txtsaldoTopup, txtan;
         btnup =(Button)findViewById(R.id.btnup);
         recyclerView = (RecyclerView) findViewById(R.id.bgp);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //via cc
+        btnSubmitCC = (Button) findViewById(R.id.btnSubmitCC);
+
+        btnSubmitCC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String amt = txtsaldoTopup.getText().toString();
+                Log.d("HARUS SAMA", amt);
+                Intent intent = new Intent(TopupActivity.this, TopupCCActivity.class );
+                intent.putExtra(MESSAGE_KEY, amt);
+                startActivity(intent);
+            }
+        });
 
 //        ln.setVisibility(View.GONE);
 //        sharedPreferences = getSharedPreferences(LogConfig.SESSION_NAME, Context.MODE_PRIVATE);
