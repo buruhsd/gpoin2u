@@ -1,7 +1,9 @@
 package tuberpraka.gpoin;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.IntegerRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +23,7 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -38,11 +41,13 @@ import tuberpraka.gpoin.Model.NicePay;
 public class TopupCCActivity extends AppCompatActivity {
 
     public final static String MESSAGE_KEY = "tuberpraka.gpoin.meesage_key";
+    public final static String POIN_KEY = "tuberpraka.gpoin.pass_key";
 
     public static final String iMid = "BMRITEST01";
     public static final String encodeKey = "33F49GnCMS1mFYlGXisbUDzVf2ATWCl9k3R++d5hDd3Frmuos/XLx8XhXpe+LDYAbpGKZYSwtlyyLOtS/8aD7A==";
     public static String url = "https://www.nicepay.co.id/nicepay/api/onePassToken.do";
-    public static String charge = "http://192.168.1.89/nicepay/PHP_Nicepay_Direct/charge.php";
+    public static String charge = "http://192.168.1.96/nicepay/PHP_Nicepay_Direct/charge.php";
+    public static String storeCC= "http://192.168.1.96/apig/gmember/Controller_topup/storeCC";
     public final static String harga= "15000";
     EditText editText, editText2, editText3, editText4;
     Button button2;
@@ -50,14 +55,22 @@ public class TopupCCActivity extends AppCompatActivity {
     LayoutInflater inflater;
     View dialogView;
     WebView bayar;
+    SharedPreferences sharedPreferences;
+    String id_imei;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
-
 //        Log.d("DARI INTENT", amt);
+        sharedPreferences = getSharedPreferences(LogConfig.SESSION_NAME, Context.MODE_PRIVATE);
+        id_imei = sharedPreferences.getString(LogConfig.ID_IMEI_SESSION,"0");
+
+        Log.d("imeinya adalah", "0");
         setContentView(R.layout.activity_topup_cc);
 
         editText = (EditText) findViewById(R.id.editText);
@@ -65,6 +78,7 @@ public class TopupCCActivity extends AppCompatActivity {
         editText3 = (EditText) findViewById(R.id.editText3);
         editText4 = (EditText) findViewById(R.id.editText4);
         button2 = (Button) findViewById(R.id.button2);
+
 
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,13 +159,16 @@ public class TopupCCActivity extends AppCompatActivity {
     }
 
     public void string() {
-
         Intent intent = getIntent();
         String message = intent.getStringExtra(MESSAGE_KEY);
+        String passtrx = intent.getStringExtra(POIN_KEY);
+
         Integer poin = Integer.parseInt(message);
         Integer biaya = Integer.parseInt(harga);
         Integer amt = poin*biaya;
 
+        Log.d("Poin", String.valueOf(poin));
+        Log.d("PASSTRX", passtrx);
         Log.d("mencoba",String.valueOf(amt));
 
         String name = editText.getText().toString();
@@ -241,6 +258,7 @@ public class TopupCCActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which){
                 sendCharge(cardToken);
+                sendToServer();
                 dialog.dismiss();
             }
 
@@ -269,8 +287,8 @@ public class TopupCCActivity extends AppCompatActivity {
 //        WebBackForwardList mWebBackForwardList = bayar.copyBackForwardList();
 //        String historyUrl = mWebBackForwardList.getItemAtIndex(mWebBackForwardList.getCurrentIndex()-1).getUrl();
 
-//        bayar.loadUrl("https://www.nicepay.co.id/nicepay/api/secureVeRequest.do?country=360&callbackUrl=http://192.168.1.89/nicepay/PHP_Nicepay_Direct/3dsecure.php&onePassToken="+cardToken);
-        bayar.loadUrl("facebook.com");
+        bayar.loadUrl("https://www.nicepay.co.id/nicepay/api/secureVeRequest.do?country=360&callbackUrl=http://192.168.1.96/nicepay/PHP_Nicepay_Direct/3dsecure.php&onePassToken="+cardToken);
+//        bayar.loadUrl("https://facebook.com");
 //        String geturl = bayar.getUrl();
 //        if (geturl == "http://192.168.1.89/nicepay/PHP_Nicepay_Direct/3dsecure.php?resultCd=0000&resultMsg=SUCCESS&referenceNo=12345678"){
 //            sendCharge();
@@ -283,12 +301,20 @@ public class TopupCCActivity extends AppCompatActivity {
     }
 
     public void sendCharge(String cardToken){
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(MESSAGE_KEY);
+        String passtrx = intent.getStringExtra(POIN_KEY);
+
+        Integer poin = Integer.parseInt(message);
+        Integer biaya = Integer.parseInt(harga);
+        Integer amt = poin*biaya;
+
         final String name = editText.getText().toString();
         final String card = editText2.getText().toString();
         final String cvv = editText3.getText().toString();
         final String yymm = editText4.getText().toString();
         final String referenceNo = "12345678";
-        final String amt = "10000";
+        final String total = String.valueOf(amt);
         final String onepass = cardToken;
 
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -300,15 +326,16 @@ public class TopupCCActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
 
-                Log.d("data", response);
+                Log.d("data", response.toString());
                 Log.d("manga", "naruto");
+//                sendToServer();
 //
                 Toast.makeText(TopupCCActivity.this, response,Toast.LENGTH_LONG).show();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("error gan", error.getMessage());
+                Log.e("error gan", error.toString());
             }
         }){
             @Override
@@ -320,7 +347,7 @@ public class TopupCCActivity extends AppCompatActivity {
                 jsonParams.put("cardNo",card);
                 jsonParams.put("cardCvv", cvv);
                 jsonParams.put("payMethod", "01");
-                jsonParams.put("amt", amt);
+                jsonParams.put("amt", total);
                 jsonParams.put("resultMsg", "");
                 jsonParams.put("resultCd", "");
                 jsonParams.put("onePassToken", onepass);
@@ -330,8 +357,71 @@ public class TopupCCActivity extends AppCompatActivity {
             }
 
         };
+        URL.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+
+            }
+        });
         RequestHandler.getInstance(this).addToRequestQueue(URL);
 
+
+    }
+
+    public void sendToServer(){
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(MESSAGE_KEY);
+        String passtrx = intent.getStringExtra(POIN_KEY);
+
+        Integer poin = Integer.parseInt(message);
+        final Integer biaya = Integer.parseInt(harga);
+        Integer amt = poin*biaya;
+
+        final String point = String.valueOf(poin);
+        final String id_imei = "23";
+        final String harga = String.valueOf(biaya);
+
+        Log.d("data poin", point);
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        StringRequest URL = new StringRequest(Request.Method.POST, storeCC, new Response.Listener<String>(){
+
+            @Override
+            public void onResponse(String response) {
+                Log.d("SUKSES", response.toString());
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("error gan", error.toString());
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String, String> jsonParams = new HashMap<String, String>();
+                jsonParams.put("poin", point);
+                jsonParams.put("id_imei",id_imei);
+                jsonParams.put("harga", String.valueOf(biaya));
+
+                return jsonParams;
+
+            }
+
+        };
+        RequestHandler.getInstance(this).addToRequestQueue(URL);
 
     }
 
@@ -381,4 +471,6 @@ public class TopupCCActivity extends AppCompatActivity {
             // Default behaviour
         }
     }
+
+
 }

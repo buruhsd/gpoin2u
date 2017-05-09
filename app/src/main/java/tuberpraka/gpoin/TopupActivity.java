@@ -92,6 +92,7 @@ EditText txtsaldoTopup, txtan;
 
     public static final String UPLOAD_KEY = "upload_image";
     public final static String MESSAGE_KEY = "tuberpraka.gpoin.meesage_key";
+    public final static String PASS_KEY = "tuberpraka.gpoin.pass_key";
 
     private int PICK_IMAGE_REQUEST = 100;
 
@@ -112,6 +113,8 @@ EditText txtsaldoTopup, txtan;
         ActionBar actionBar = getSupportActionBar();
         sharedPreferences = getSharedPreferences(LogConfig.SESSION_NAME, Context.MODE_PRIVATE);
         id_imei = sharedPreferences.getString(LogConfig.ID_IMEI_SESSION,"0");
+
+
 
         if (actionBar != null) {
             actionBar.setCustomView(R.layout.custom_action_bar);
@@ -147,10 +150,13 @@ EditText txtsaldoTopup, txtan;
         btnSubmitCC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String amt = txtsaldoTopup.getText().toString();
-                Log.d("HARUS SAMA", amt);
+                String poin = txtsaldoTopup.getText().toString();
+                String passtrx = txtan.getText().toString();
+                Log.d("HARUS SAMA", poin);
+                Log.d("PASSTRX", passtrx);
                 Intent intent = new Intent(TopupActivity.this, TopupCCActivity.class );
-                intent.putExtra(MESSAGE_KEY, amt);
+                intent.putExtra(MESSAGE_KEY, poin);
+                intent.putExtra(PASS_KEY, passtrx);
                 startActivity(intent);
             }
         });
