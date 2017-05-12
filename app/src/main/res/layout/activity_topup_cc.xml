@@ -1,123 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:padding="5dp"
     tools:context="tuberpraka.gpoin.TopupCCActivity">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Card's Holder Name"
-        app:layout_constraintLeft_toLeftOf="parent"
-        tools:layout_editor_absoluteY="26dp"
-        android:layout_above="@+id/editText2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="12dp" />
+        android:text="Card's Holder Name" />
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:inputType="textPersonName"
         android:text="PRADITYA WINDHI I"
-        app:layout_constraintLeft_toLeftOf="parent"
-        tools:layout_editor_absoluteY="43dp"
-        android:layout_below="@+id/textView2"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView" />
+        android:layout_below="@+id/textView"/>
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2"
-        android:layout_below="@+id/textView"
-        android:text="Card Number"
-        app:layout_constraintLeft_toLeftOf="parent"
-        tools:layout_editor_absoluteY="105dp" />
+        android:layout_below="@+id/editText"
+        android:text="Card Number" />
 
     <EditText
         android:id="@+id/editText2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:inputType="textPersonName"
         android:text="5409120030212205"
-        app:layout_constraintLeft_toLeftOf="parent"
-        tools:layout_editor_absoluteY="122dp"
-        android:layout_above="@+id/editText4"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText" />
+        android:layout_below="@+id/textView2"/>
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="551"
-        app:layout_constraintLeft_toLeftOf="parent"
-        tools:layout_editor_absoluteY="184dp"
-        android:layout_alignBaseline="@+id/textView4"
-        android:layout_alignBottom="@+id/textView4"
-        android:layout_alignLeft="@+id/editText3"
-        android:layout_alignStart="@+id/editText3" />
+        android:text="CVV"
+        android:layout_below="@+id/editText2" />
 
     <EditText
         android:id="@+id/editText3"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:inputType="textPersonName"
         android:text="551"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.429"
-        android:layout_alignBottom="@+id/button"
-        android:layout_toRightOf="@+id/textView"
-        android:layout_toEndOf="@+id/textView"
-        android:layout_marginBottom="29dp" />
+        android:layout_below="@+id/textView3"
+/>
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="YYMM"
-        app:layout_constraintLeft_toLeftOf="parent"
-        tools:layout_editor_absoluteY="276dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/editText4"
-        android:layout_alignEnd="@+id/editText4"
-        android:layout_marginRight="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="41dp" />
+        android:layout_below="@+id/editText3"/>
+
 
     <EditText
         android:id="@+id/editText4"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button"
         android:layout_marginBottom="81dp"
-        android:layout_toEndOf="@+id/button"
-        android:layout_toRightOf="@+id/button"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="2101"
-        app:layout_constraintLeft_toLeftOf="parent"
-        tools:layout_editor_absoluteY="293dp" />
+        android:layout_below="@+id/textView4" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="Konfirmasi"
+        android:background="@color/colorPrimaryRed"
+        android:textColor="@android:color/background_light"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="17dp" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/cc"
+        android:layout_alignTop="@+id/editText2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 
-
-</LinearLayout>
+</RelativeLayout>

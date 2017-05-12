@@ -387,6 +387,7 @@ public class TopupCCActivity extends AppCompatActivity {
         final Integer biaya = Integer.parseInt(harga);
         Integer amt = poin*biaya;
 
+        final String name = editText.getText().toString();
         final String point = String.valueOf(poin);
         final String id_imei = "23";
         final String harga = String.valueOf(biaya);
@@ -414,7 +415,8 @@ public class TopupCCActivity extends AppCompatActivity {
                 Map<String, String> jsonParams = new HashMap<String, String>();
                 jsonParams.put("poin", point);
                 jsonParams.put("id_imei",id_imei);
-                jsonParams.put("harga", String.valueOf(biaya));
+                jsonParams.put("billingNm", name);
+                jsonParams.put("harga", harga);
 
                 return jsonParams;
 
