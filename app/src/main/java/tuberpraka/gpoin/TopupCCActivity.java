@@ -46,8 +46,8 @@ public class TopupCCActivity extends AppCompatActivity {
     public static final String iMid = "BMRITEST01";
     public static final String encodeKey = "33F49GnCMS1mFYlGXisbUDzVf2ATWCl9k3R++d5hDd3Frmuos/XLx8XhXpe+LDYAbpGKZYSwtlyyLOtS/8aD7A==";
     public static String url = "https://www.nicepay.co.id/nicepay/api/onePassToken.do";
-    public static String charge = "http://192.168.1.96/nicepay/PHP_Nicepay_Direct/charge.php";
-    public static String storeCC= "http://192.168.1.96/apig/gmember/Controller_topup/storeCC";
+    public static String charge = "http://192.168.1.81/nicepay/PHP_Nicepay_Direct/charge.php";
+    public static String storeCC= "http://192.168.1.81/apig/gmember/Controller_topup/storeCC";
     public final static String harga= "15000";
     EditText editText, editText2, editText3, editText4;
     Button button2;
@@ -287,8 +287,8 @@ public class TopupCCActivity extends AppCompatActivity {
 //        WebBackForwardList mWebBackForwardList = bayar.copyBackForwardList();
 //        String historyUrl = mWebBackForwardList.getItemAtIndex(mWebBackForwardList.getCurrentIndex()-1).getUrl();
 
-        bayar.loadUrl("https://www.nicepay.co.id/nicepay/api/secureVeRequest.do?country=360&callbackUrl=http://192.168.1.96/nicepay/PHP_Nicepay_Direct/3dsecure.php&onePassToken="+cardToken);
-//        bayar.loadUrl("https://facebook.com");
+//        bayar.loadUrl("https://www.nicepay.co.id/nicepay/api/secureVeRequest.do?country=360&callbackUrl=http://192.168.1.71/nicepay/PHP_Nicepay_Direct/3dsecure.php&onePassToken="+cardToken);
+        bayar.loadUrl("https://facebook.com");
 //        String geturl = bayar.getUrl();
 //        if (geturl == "http://192.168.1.89/nicepay/PHP_Nicepay_Direct/3dsecure.php?resultCd=0000&resultMsg=SUCCESS&referenceNo=12345678"){
 //            sendCharge();
@@ -373,7 +373,8 @@ public class TopupCCActivity extends AppCompatActivity {
 
             }
         });
-        RequestHandler.getInstance(this).addToRequestQueue(URL);
+//        RequestHandler.getInstance(this).addToRequestQueue(URL);
+        queue.add(URL);
 
 
     }
@@ -385,12 +386,12 @@ public class TopupCCActivity extends AppCompatActivity {
 
         Integer poin = Integer.parseInt(message);
         final Integer biaya = Integer.parseInt(harga);
-        Integer amt = poin*biaya;
+        final Integer amt = poin*biaya;
 
         final String name = editText.getText().toString();
         final String point = String.valueOf(poin);
         final String id_imei = "23";
-        final String harga = String.valueOf(biaya);
+        final String total = String.valueOf(amt);
 
         Log.d("data poin", point);
 
@@ -416,15 +417,15 @@ public class TopupCCActivity extends AppCompatActivity {
                 jsonParams.put("poin", point);
                 jsonParams.put("id_imei",id_imei);
                 jsonParams.put("billingNm", name);
-                jsonParams.put("harga", harga);
+                jsonParams.put("harga", String.valueOf(amt));
 
                 return jsonParams;
 
             }
 
         };
-        RequestHandler.getInstance(this).addToRequestQueue(URL);
-
+//        RequestHandler.getInstance(this).addToRequestQueue(URL);
+        queue.add(URL);
     }
 
     public class GeoWebViewClient extends WebViewClient {

@@ -7,68 +7,133 @@
     android:padding="5dp"
     tools:context="tuberpraka.gpoin.TopupCCActivity">
 
-    <TextView
-        android:id="@+id/textView"
+    <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Card's Holder Name" />
+        android:id="@+id/scrollView">
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="PRADITYA WINDHI I"
-        android:layout_below="@+id/textView"/>
+          <TextView
+              android:id="@+id/textView"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Card's Holder Name" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText"
-        android:text="Card Number" />
+          <EditText
+              android:id="@+id/editText"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:inputType="textPersonName"
+              android:text="PRADITYA WINDHI I"
+              android:hint="Your Name"
+              android:layout_below="@+id/textView"/>
 
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="5409120030212205"
-        android:layout_below="@+id/textView2"/>
+          <TextView
+              android:id="@+id/textView2"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@+id/editText"
+              android:text="Card Number" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CVV"
-        android:layout_below="@+id/editText2" />
+          <EditText
+              android:id="@+id/editText2"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:inputType="number"
+              android:text="5409120030212205"
+              android:hint="Your Card Number"
+              android:layout_below="@+id/textView2"/>
 
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="551"
-        android:layout_below="@+id/textView3"
-/>
+          <TextView
+              android:id="@+id/textView3"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="CVV"
+              android:layout_below="@+id/editText2" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="YYMM"
-        android:layout_below="@+id/editText3"/>
+          <EditText
+              android:id="@+id/editText3"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:maxLength="3"
+              android:text="551"
+              android:hint="CVV code"
+              android:layout_below="@+id/textView3"
+              android:inputType="textPassword"/>
+
+          <TextView
+              android:id="@+id/textView4"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="YYMM"
+              android:layout_below="@+id/editText3"/>
 
 
-    <EditText
-        android:id="@+id/editText4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="81dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="2101"
-        android:layout_below="@+id/textView4" />
+          <EditText
+              android:id="@+id/editText4"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:ems="10"
+              android:inputType="text"
+              android:text="2101"
+              android:hint="YYMM"
+              android:layout_below="@+id/textView4" />
+
+          <TextView
+              android:id="@+id/textView5"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Alamat penagihan"
+              android:layout_below="@+id/editText4"/>
+
+          <EditText
+              android:id="@+id/editText5"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:inputType="text"
+              android:hint="Address"
+              android:layout_below="@+id/textView5" />
+
+          <TextView
+              android:id="@+id/textView6"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Postal Code"
+              android:layout_below="@+id/editText5"/>
+
+          <EditText
+              android:id="@+id/editText6"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="15dp"
+              android:ems="10"
+              android:inputType="textPostalAddress"
+              android:hint="Postal Code"
+              android:layout_below="@+id/textView6" />
+
+          <TextView
+              android:id="@+id/textView7"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="*Kami menjamin keamanan transaksi anda"
+              android:layout_marginBottom="53dp"
+              android:layout_below="@+id/editText6"
+              android:layout_alignParentLeft="true"
+              android:layout_alignParentStart="true" />
+
+          <ImageView
+              android:id="@+id/imageView4"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              app:srcCompat="@drawable/cc"
+              android:layout_alignTop="@+id/editText2"
+              android:layout_alignParentRight="true"
+              android:layout_alignParentEnd="true" />
+
+      </RelativeLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/button2"
@@ -77,19 +142,7 @@
         android:text="Konfirmasi"
         android:background="@color/colorPrimaryRed"
         android:textColor="@android:color/background_light"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="17dp" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/cc"
-        android:layout_alignTop="@+id/editText2"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentBottom="true" />
 
 
 </RelativeLayout>
