@@ -25,6 +25,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -33,6 +34,8 @@ import org.json.JSONObject;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,17 +49,23 @@ public class TopupCCActivity extends AppCompatActivity {
     public static final String iMid = "BMRITEST01";
     public static final String encodeKey = "33F49GnCMS1mFYlGXisbUDzVf2ATWCl9k3R++d5hDd3Frmuos/XLx8XhXpe+LDYAbpGKZYSwtlyyLOtS/8aD7A==";
     public static String url = "https://www.nicepay.co.id/nicepay/api/onePassToken.do";
-    public static String charge = "http://192.168.1.81/nicepay/PHP_Nicepay_Direct/charge.php";
-    public static String storeCC= "http://192.168.1.81/apig/gmember/Controller_topup/storeCC";
+    public static String charge = "http://192.168.1.69/nicepay/PHP_Nicepay_Direct/charge.php";
+    public static String storeCC= "http://192.168.1.69/apig/gmember/Controller_topup/storeCC";
+    public static String refnumber = "http://192.168.1.69/apig/gmember/Controller_topup/refnumber";
     public final static String harga= "15000";
-    EditText editText, editText2, editText3, editText4;
+    EditText editText, editText2, editText3, editText4, editText5, editText6;
     Button button2;
     AlertDialog.Builder dialog;
+AlertDialog dialogx;
     LayoutInflater inflater;
     View dialogView;
     WebView bayar;
     SharedPreferences sharedPreferences;
-    String id_imei;
+    String id_imei, email, ref;
+    String referenceNo;
+    boolean xx = false;
+
+
 
 
 
@@ -69,15 +78,23 @@ public class TopupCCActivity extends AppCompatActivity {
 //        Log.d("DARI INTENT", amt);
         sharedPreferences = getSharedPreferences(LogConfig.SESSION_NAME, Context.MODE_PRIVATE);
         id_imei = sharedPreferences.getString(LogConfig.ID_IMEI_SESSION,"0");
+        email = sharedPreferences.getString(LogConfig.EMAIL_SESSION, "0");
+//
+//
+//        referenceNo = refnumber;
 
-        Log.d("imeinya adalah", "0");
+        Log.d("emailnya", email);
+//        Log.d("tanggal hari ini", timeStamp);
         setContentView(R.layout.activity_topup_cc);
 
         editText = (EditText) findViewById(R.id.editText);
         editText2 = (EditText) findViewById(R.id.editText2);
         editText3 = (EditText) findViewById(R.id.editText3);
         editText4 = (EditText) findViewById(R.id.editText4);
+        editText5 = (EditText) findViewById(R.id.editText5);
+        editText6 = (EditText) findViewById(R.id.editText6);
         button2 = (Button) findViewById(R.id.button2);
+
 
 
         button2.setOnClickListener(new View.OnClickListener() {
@@ -85,64 +102,13 @@ public class TopupCCActivity extends AppCompatActivity {
             public void onClick(View v) {
 //                input();
                 string();
+                referensi();
+
+
             }
         });
 
     }
-
-//    public void input() {
-//        String name = editText.getText().toString();
-//        String card = editText2.getText().toString();
-//        String cvv = editText3.getText().toString();
-//        String yymm = editText4.getText().toString();
-//
-//        RequestQueue queue = Volley.newRequestQueue(this);
-//
-////        Map<String, String> jsonParams = new HashMap<String, String>();
-////        jsonParams.put("merchantToken", encodeKey);
-////        jsonParams.put("cardExpYymm",yymm);
-////        jsonParams.put("cardNo",card);
-////        jsonParams.put("amt", "10");
-////        jsonParams.put("referenceNo","20170429092009");
-////        jsonParams.put("iMID", iMid);
-//
-//
-//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-//                Request.Method.POST, url + "?jsonData={\"iMid\":\"BMRITEST01\",\"referenceNo\":\""+card+"\",\"amt\":\""+ , null, new Response.Listener<JSONObject>() {
-//            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-//            @Override
-//            public void onResponse(JSONObject response) {
-//
-////                Log.d("coba", String.valueOf(response));
-//
-//                try {
-//                    JSONArray json = new JSONArray(response);
-////                    Log.d("save", json.toString());
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Log.d("Tag", "Error" + error.getMessage());
-//                Toast.makeText(MainActivity.this, "Failed connect to server", Toast.LENGTH_LONG).show();
-//            }
-//        }) {
-//            @Override
-//            public Map<String, String> getHeaders() throws AuthFailureError {
-//                HashMap<String, String> headers = new HashMap<String, String>();
-//                return headers;
-//            }
-//
-////            @Override
-////            public String getBodyContentType() {
-////                return "application/json";
-////            }
-//        };
-//        queue.add(jsonObjectRequest);
-//    }
 
 
     private static String bytesToHexString(byte[] bytes) {
@@ -175,7 +141,7 @@ public class TopupCCActivity extends AppCompatActivity {
         String card = editText2.getText().toString();
         String cvv = editText3.getText().toString();
         String yymm = editText4.getText().toString();
-        String referenceNo = "12345678";
+//        String referenceNo = "12345678";
 
         Log.d("AMT", String.valueOf(amt));
 
@@ -209,7 +175,7 @@ public class TopupCCActivity extends AppCompatActivity {
         jsonParams.put("cardExpYymm",yymm);
         jsonParams.put("cardNo",card);
         jsonParams.put("amt", "10");
-        jsonParams.put("referenceNo","20170429092009");
+        jsonParams.put("referenceNo",referenceNo);
         jsonParams.put("iMID", iMid);
 
         StringRequest URL = new StringRequest(Request.Method.GET, url + "?jsonData={\"iMid\":\""+iMid+"\",\"referenceNo\":\""+referenceNo+"\",\"amt\":\""+amt+"\",\"cardNo\":\""+card+"\",\"cardExpYymm\":\""+yymm+"\",\"merchantToken\":\""+hash+"\"}", new Response.Listener<String>() {
@@ -217,7 +183,7 @@ public class TopupCCActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 Log.d("URL", url);
 //
-                Toast.makeText(TopupCCActivity.this, response,Toast.LENGTH_LONG).show();
+//                Toast.makeText(TopupCCActivity.this, response,Toast.LENGTH_LONG).show();
 
                 String url = response.replace("(", "");
                 String hasil = url.replace(")", "");
@@ -244,7 +210,7 @@ public class TopupCCActivity extends AppCompatActivity {
 
     }
 
-    private void DialogForm(final String cardToken, String button){
+    public void DialogForm(final String cardToken, String button){
         dialog = new AlertDialog.Builder(TopupCCActivity.this);
         inflater = getLayoutInflater();
         dialogView = inflater.inflate(R.layout.webview,null);
@@ -257,7 +223,7 @@ public class TopupCCActivity extends AppCompatActivity {
         dialog.setPositiveButton("save",new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
-                sendCharge(cardToken);
+//                sendCharge(cardToken);
                 sendToServer();
                 dialog.dismiss();
             }
@@ -283,20 +249,36 @@ public class TopupCCActivity extends AppCompatActivity {
         bayar.getUrl();
         bayar.setWebViewClient(new GeoWebViewClient());
         bayar.setWebViewClient(new NoErrorWebViewClient());
+        bayar.setWebViewClient(new WebViewClient(){
+            @Override
 
-//        WebBackForwardList mWebBackForwardList = bayar.copyBackForwardList();
-//        String historyUrl = mWebBackForwardList.getItemAtIndex(mWebBackForwardList.getCurrentIndex()-1).getUrl();
+            public void onPageFinished(WebView view, String data) {
+                super.onPageFinished(view, data);
+                //   Toast.makeText(MainActivity.this, "Finish " , Toast.LENGTH_SHORT).show();
+               /* prg.setVisibility(View.GONE);
+                img.setVisibility(View.GONE);*/
 
-//        bayar.loadUrl("https://www.nicepay.co.id/nicepay/api/secureVeRequest.do?country=360&callbackUrl=http://192.168.1.71/nicepay/PHP_Nicepay_Direct/3dsecure.php&onePassToken="+cardToken);
-        bayar.loadUrl("https://facebook.com");
-//        String geturl = bayar.getUrl();
-//        if (geturl == "http://192.168.1.89/nicepay/PHP_Nicepay_Direct/3dsecure.php?resultCd=0000&resultMsg=SUCCESS&referenceNo=12345678"){
-//            sendCharge();
-//        }
-//        String geturl = bayar.getOriginalUrl().toString();
-//        Log.d("History", geturl);
+//                Toast.makeText(TopupCCActivity.this, "Pagefinish"+data,Toast.LENGTH_LONG).show();
+                Log.d("URLNYA", data);
+                if (data.contains("0000")){
+                    Toast.makeText(TopupCCActivity.this, "ISO"+data,Toast.LENGTH_LONG).show();
+                    sendToServer();
+                    dialogx.dismiss();
+                }
 
-        dialog.show();
+                }
+
+
+            });
+
+        bayar.loadUrl("https://www.nicepay.co.id/nicepay/api/secureVeRequest.do?country=360&callbackUrl=http://192.168.1.69/nicepay/PHP_Nicepay_Direct/3dsecure.php&onePassToken="+cardToken);
+//        bayar.loadUrl("https://demo.semestaweb.tv");
+        dialogx = dialog.create();
+        dialogx.show();
+//        dialogx.dismiss();
+
+
+//        ((AlertDialog)dialogx).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
 
     }
 
@@ -313,7 +295,7 @@ public class TopupCCActivity extends AppCompatActivity {
         final String card = editText2.getText().toString();
         final String cvv = editText3.getText().toString();
         final String yymm = editText4.getText().toString();
-        final String referenceNo = "12345678";
+//        final String referenceNo = "12345678";
         final String total = String.valueOf(amt);
         final String onepass = cardToken;
 
@@ -351,7 +333,7 @@ public class TopupCCActivity extends AppCompatActivity {
                 jsonParams.put("resultMsg", "");
                 jsonParams.put("resultCd", "");
                 jsonParams.put("onePassToken", onepass);
-                jsonParams.put("referenceNo","12345678");
+                jsonParams.put("referenceNo", referenceNo);
 
                 return jsonParams;
             }
@@ -392,8 +374,11 @@ public class TopupCCActivity extends AppCompatActivity {
         final String point = String.valueOf(poin);
         final String id_imei = "23";
         final String total = String.valueOf(amt);
+        final String alamat = editText6.getText().toString();
+
 
         Log.d("data poin", point);
+        Log.d("REferensi no", referenceNo);
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -418,6 +403,8 @@ public class TopupCCActivity extends AppCompatActivity {
                 jsonParams.put("id_imei",id_imei);
                 jsonParams.put("billingNm", name);
                 jsonParams.put("harga", String.valueOf(amt));
+                jsonParams.put("alamat", alamat);
+                jsonParams.put("referenceno", referenceNo);
 
                 return jsonParams;
 
@@ -473,6 +460,41 @@ public class TopupCCActivity extends AppCompatActivity {
 
             // Default behaviour
         }
+    }
+
+    public void referensi(){
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+
+        JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, refnumber, null,
+                new Response.Listener<JSONObject>()
+                {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // display response
+                        String hasil = response.toString();
+                        Log.d("Response", response.toString());
+
+                        try {
+                            referenceNo = response.getString("invoice");
+                            Log.d("refnumber", referenceNo);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        return;
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("Error.Response", "respon");
+                    }
+                }
+        );
+        //perintah request
+        queue.add(getRequest);
     }
 
 

@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText txtusername,txtpass, txtec;
     Spinner id_bisnis, bahasa;
-    String pass="", username="", id_member ="", id_imei="", type="", status="", nama="", txtbisnis="", link_logo ="", alias_menu="";
+    String pass="", username="", id_member ="", email="", id_imei="", type="", status="", nama="", txtbisnis="", link_logo ="", alias_menu="";
     TextView txtc,txt_news;
     String cekreg="1", bisnis ="";
     private BroadcastReceiver mBroadcastReceiver;
@@ -281,6 +281,7 @@ cek_versi();
                             for(int a =0; a< jsonArr.length(); a++){
                                id_member= jsonArr.getJSONObject(a).getString("id_user");
                                 id_imei = jsonArr.getJSONObject(a).getString("id_imei");
+                                id_imei = jsonArr.getJSONObject(a).getString("id_imei");
                                 status = jsonArr.getJSONObject(a).getString("stat");
                                 nama =jsonArr.getJSONObject(a).getString("namaacc");
                                 txtbisnis = jsonArr.getJSONObject(a).getString("bisnis");
@@ -362,6 +363,7 @@ cek_versi();
         editor.putString(LogConfig.PASS_SESSION, pass);
         editor.putString(LogConfig.USERNAME_SESSION, id_member);
         editor.putString(LogConfig.ID_IMEI_SESSION, id_imei);
+        editor.putString(LogConfig.EMAIL_SESSION, email);
         editor.putString(LogConfig.NAMAACC_SESSION, nama);
         editor.putString(LogConfig.NAMA_SESSION, username);
         editor.putString(LogConfig.LOGO, link_logo);

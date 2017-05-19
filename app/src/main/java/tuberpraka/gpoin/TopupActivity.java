@@ -65,7 +65,7 @@ EditText txtsaldoTopup, txtan;
     Button btnSubmitTopup, btnup, btnSubmitCC;
     boolean tombol=false;
     Spinner konfirmbank;
-    String saldo="", param="", id_imei="",atasnama="", databank="", password="", passtrx="",  harga="", kode_unik="";
+    String saldo="", param="", id_imei="",atasnama="", databank="", password="", passtrx="",  harga="", kode_unik="", email="";
     String saldoTopup="";
     TextView txtket, txtketjelas;
     LinearLayout ln;
@@ -113,6 +113,10 @@ EditText txtsaldoTopup, txtan;
         ActionBar actionBar = getSupportActionBar();
         sharedPreferences = getSharedPreferences(LogConfig.SESSION_NAME, Context.MODE_PRIVATE);
         id_imei = sharedPreferences.getString(LogConfig.ID_IMEI_SESSION,"0");
+        email = sharedPreferences.getString(LogConfig.EMAIL_SESSION, "0");
+
+        Log.d("email", email);
+        Log.d("IMEI", id_imei);
 
 
 
